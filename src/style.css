@@ -19,7 +19,8 @@ li {
   padding: 0;
   color: rgb (135, 135, 135);
   font-weight: 100;
-  line-height:19px;
+  line-height: 19px;
+  text-transform: capitalize;
 }
 .weather-app {
   max-width: 600px;
