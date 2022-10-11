@@ -29,6 +29,7 @@ function displayTemperature(response){
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  celsiusTemperature = response.data.main.temp;
 }
 function search(city) {
 let apiKey = "c197bfddbccf715635ed21140b4bacbb";
@@ -42,8 +43,21 @@ function handleSubmit(event){
   search(cityInputElement.value);
 }
 
-search("Dublin");
+function displayFahrenheitTemperature(event){
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature*9)/5+32;
+  alert(fahrenheitTemperature);
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+}
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature)
+
+search("Dublin");
